@@ -126,9 +126,6 @@
             background-color: #eee;
             margin-top: 10px;
             border-radius: 5px;
-            background: url('https://ministryofcurry.com/wp-content/uploads/2024/06/chicken-biryani-5.jpg');
-            background-position: center;
-            background-size: cover;
         }
 
         .feed .content ul {
@@ -167,7 +164,94 @@
     border-radius: 10px;
 }
 
+.filter button {
+    padding: 10px 15px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+}
 
+.filter button:hover {
+    background-color: #333;
+}
+
+.feed .button {
+    margin-bottom: 10px;
+}
+
+.feed .button a {
+    padding: 10px 15px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.feed .button a:hover {
+    background-color: #333;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.modal-content .submit-btn {
+    background-color: #38E379;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content .submit-btn:hover {
+    background-color: #20CA60;
+}
     </style>
 </head>
 <body>
@@ -181,7 +265,7 @@
                 <input type="search" placeholder="Search for food" />
             </div>
             <div class="links">
-                <i class="fa-solid fa-bell"></i>
+                <a href="notifications.php"><i class="fa-solid fa-bell"></i></a>
                 <button>Donate <i class="fa-solid fa-carrot"></i></button>
             </div>
         </nav>
@@ -195,11 +279,11 @@
                 <div class="circle"></div>
                 <div class="name-time">
                     <span class="name">Name</span>
-                    <span class="time">Time</span>
+                    <span class="time">Date</span>
                 </div>
             </div>
             <div class="content">
-                <div class="food-img">
+                <div class="food-img" style="background: url('https://ministryofcurry.com/wp-content/uploads/2024/06/chicken-biryani-5.jpg');background-size: cover;background-position: center;">
 
                 </div>
                 <h3>Chicken Biriyani</h3>
@@ -208,6 +292,9 @@
                     <li>Contact Number: <b>+91938594859</b></li>
                     <li>Address: <b>Thalassery, Kerala</b></li>
                 </ul>
+            </div>
+            <div class="button">
+                <a href="#">Request</a>
             </div>
         </div>
 
@@ -216,19 +303,22 @@
                 <div class="circle"></div>
                 <div class="name-time">
                     <span class="name">Name</span>
-                    <span class="time">Time</span>
+                    <span class="time">Date</span>
                 </div>
             </div>
             <div class="content">
-                <div class="food-img">
+                <div class="food-img" style="background: url('https://pbs.twimg.com/media/FyF4eKsaIAAXubw.jpg');background-size: cover;background-position: center;">
 
                 </div>
-                <h3>Chicken Biriyani</h3>
+                <h3>Porotta beef</h3>
                 <ul>
                     <li>Amount Available: <b>50 servings</b></li>
                     <li>Contact Number: <b>+91938594859</b></li>
                     <li>Address: <b>Thalassery, Kerala</b></li>
                 </ul>
+            </div>
+            <div class="button">
+                <a href="#">Request</a>
             </div>
         </div>
 
@@ -237,21 +327,26 @@
                 <div class="circle"></div>
                 <div class="name-time">
                     <span class="name">Name</span>
-                    <span class="time">Time</span>
+                    <span class="time">Date</span>
                 </div>
             </div>
             <div class="content">
-                <div class="food-img">
+                <div class="food-img" style="background: url('https://www.munatycooking.com/wp-content/uploads/2022/09/Chicken-Mandi-1200-x1200-2022-500x375.jpg');background-size: cover;background-position: center;">
 
                 </div>
-                <h3>Chicken Biriyani</h3>
+                <h3>Chicken Mandi</h3>
                 <ul>
                     <li>Amount Available: <b>50 servings</b></li>
                     <li>Contact Number: <b>+91938594859</b></li>
                     <li>Address: <b>Thalassery, Kerala</b></li>
                 </ul>
             </div>
+            <div class="button">
+                <a href="#">Request</a>
+            </div>
         </div>
+
+ 
     </div>
 
     <div class="filter">
@@ -306,5 +401,54 @@
     </div>
     </section>
     </div>
+
+    <div id="donateModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeDonateModal()">&times;</span>
+        <h2>Donate Food</h2>
+        <form onsubmit="submitDonation(event)">
+            <input type="text" placeholder="Food Title" required>
+            <input type="number" placeholder="Quantity Available" min="1" required>
+            <label>Best Before Date</label>
+            <input type="date" required>
+            
+            <select required>
+                <option value="">Select Food Category</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="non-vegetarian">Non-Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="halal">Halal</option>
+            </select>
+            
+            <label>Available Until</label>
+            <input type="datetime-local" required>
+            
+            <input type="tel" placeholder="Contact Phone Number" required>
+            <input type="text" placeholder="Pickup Address" required>
+            
+            <button type="submit" class="submit-btn">Submit Donation</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openDonateModal() {
+    document.getElementById('donateModal').style.display = 'flex';
+}
+
+// Function to close the donate modal
+function closeDonateModal() {
+    document.getElementById('donateModal').style.display = 'none';
+}
+
+// Function to handle form submission
+function submitDonation(event) {
+    event.preventDefault();
+    // Here you would typically add logic to process the donation
+    alert('Donation submitted successfully!');
+    closeDonateModal();
+}
+document.querySelector('.links button').setAttribute('onclick', 'openDonateModal()');
+</script>
 </body>
 </html>
