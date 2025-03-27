@@ -152,6 +152,19 @@
     top: 80px; /* Adjust according to header height */
     height: calc(100vh - 80px); /* Adjust height considering header */
     width: 20%; /* Adjust width as needed */
+       }
+       .filter form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter form input, .filter form select {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    outline: none;
+    border: 0;
+    border-radius: 10px;
 }
 
 
@@ -243,11 +256,53 @@
 
     <div class="filter">
         <h2 class="filter-title">Filter <i class="fa-solid fa-sliders"></i></h2>
-        <p>Please select your food preference:</p>
-  <input type="radio" id="veg" name="food_pref" value="veg">
-  <label for="veg">Veg</label><br>
-  <input type="radio" id="non-veg" name="food_pref" value="non-veg">
-  <label for="non-veg">Non veg</label><br>
+        <form class="food-filters">
+    <!-- Location Filter -->
+    <label for="location">Location:</label>
+    <input type="text" id="location" placeholder="Enter city or area">
+
+    <label for="distance">Distance:</label>
+    <select id="distance">
+        <option value="5">Within 5km</option>
+        <option value="10">Within 10km</option>
+        <option value="20">Within 20km</option>
+    </select>
+
+    <!-- Food Type & Category -->
+    <label for="meal-type">Meal Type:</label>
+    <select id="meal-type">
+        <option value="all">All</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snacks">Snacks</option>
+    </select>
+
+    <label for="diet">Dietary Preference:</label>
+    <select id="diet">
+        <option value="all">All</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="non-vegetarian">Non-Vegetarian</option>
+        <option value="halal">Halal</option>
+    </select>
+
+    <!-- Availability & Urgency -->
+    <label for="expiry">Best Before:</label>
+    <input type="date" id="expiry">
+
+    <!-- Sorting Options -->
+    <label for="sort">Sort By:</label>
+    <select id="sort">
+        <option value="newest">Newest First</option>
+        <option value="nearest">Nearest First</option>
+        <option value="expiring-soon">Expiring Soon</option>
+        <option value="popular">Most Popular</option>
+    </select>
+
+    <!-- Apply Filter Button -->
+    <button type="submit">Apply Filters</button>
+</form>
     </div>
     </section>
     </div>
